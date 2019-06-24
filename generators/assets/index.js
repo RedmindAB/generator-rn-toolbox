@@ -94,8 +94,8 @@ class ResourcesGenerator extends Base {
         required: true,
         default: this.projectName
       }
-    ]).then(answers =° {
-      this.xcodeProjName = answers.xcodeProjName
+    ]).then(answers => {
+      this.xcodeProjName = answers.xcodeProjName;
     })
   }
 
@@ -179,7 +179,7 @@ class ResourcesGenerator extends Base {
     );
 
     const pbxprojPath = this.destinationPath(
-      `ios/${this.projectName}.xcodeproj/project.pbxproj`
+      `ios/${this.xcodeProjName}.xcodeproj/project.pbxproj`
     );
     this.fs.write(
       pbxprojPath,
