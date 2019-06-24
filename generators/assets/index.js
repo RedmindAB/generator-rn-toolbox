@@ -48,6 +48,10 @@ class ResourcesGenerator extends Base {
       desc: 'The name of the asset',
       default: 'AppIcon',
     });
+    this.option('xcodeProjName', {
+      type: asset => asset,
+      desc: 'The .xcodeproj file'
+    });
   }
 
   initializing() {
@@ -70,7 +74,7 @@ class ResourcesGenerator extends Base {
       process.exit(1);
     }
 
-    return this.prompt([
+    this.prompt([
       {
         type: 'input',
         name: 'projectName',
@@ -81,6 +85,18 @@ class ResourcesGenerator extends Base {
     ]).then(answers => {
       this.projectName = answers.projectName;
     });
+
+    return this.prompt([
+      {
+        type: 'input',
+        name: 'xcodeProjName',
+        message: 'Name of your xcodeproj file',
+        required: true,
+        default: this.projectName
+      }
+    ]).then(answers =° {
+      this.xcodeProjName = answers.xcodeProjName
+    })
   }
 
   writing() {
