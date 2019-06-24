@@ -74,7 +74,7 @@ class ResourcesGenerator extends Base {
       process.exit(1);
     }
 
-    this.prompt([
+    return this.prompt([
       {
         type: 'input',
         name: 'projectName',
@@ -82,11 +82,7 @@ class ResourcesGenerator extends Base {
         required: true,
         default: config.name,
       },
-    ]).then(answers => {
-      this.projectName = answers.projectName;
-    });
-
-    return this.prompt([
+      
       {
         type: 'input',
         name: 'xcodeProjName',
@@ -95,8 +91,9 @@ class ResourcesGenerator extends Base {
         default: this.projectName
       }
     ]).then(answers => {
+      this.projectName = answers.projectName;
       this.xcodeProjName = answers.xcodeProjName;
-    })
+    });
   }
 
   writing() {
