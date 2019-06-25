@@ -59,8 +59,9 @@ class ResourcesGenerator extends Base {
   }
 
   prompting() {
-    if (this.options.projectName) {
+    if (this.options.projectName && this.options.xcodeProjName) {
       this.projectName = this.options.projectName;
+      this.xcodeProjName = this.options.xcodeProjName
       return Promise.resolve();
     }
 
@@ -88,7 +89,7 @@ class ResourcesGenerator extends Base {
         name: 'xcodeProjName',
         message: 'Name of your xcodeproj file',
         required: true,
-        default: this.projectName
+        default: config.name
       }
     ]).then(answers => {
       this.projectName = answers.projectName;
